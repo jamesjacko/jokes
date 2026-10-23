@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>James' Bolognese Ragu</title>
+<meta name="description" content="The best bolognese ragu you will ever make, after you read about my whole life.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-50: #fdf3ee;
+    --brand-100: #f9e0d3;
+    --brand-500: #b5401f;
+    --brand-600: #9a3418;
+    --brand-800: #5e1f0e;
+    --ink: #2b1d17;
+    --ink-soft: #6b5a52;
+    --paper: #fffaf6;
+    --card: #ffffff;
+    --line: #ecdcd2;
+    --ad-bg: #fff8d6;
+    --ad-line: #e8d77a;
+    --ad-ink: #4a4110;
+    --ok: #2f7d4f;
+    --shadow: 0 2px 12px rgba(60, 25, 10, 0.06);
+    --shadow-up: 0 8px 32px rgba(60, 25, 10, 0.18);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 16px/1.65 Inter, system-ui, sans-serif;
+    padding-bottom: 96px;
+  }
+  button, [role="button"] { cursor: pointer; font: inherit; }
+  a { color: var(--brand-600); }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 16px; }
+
+  /* Header */
+  .site-head {
+    border-bottom: 1px solid var(--line);
+    background: var(--card);
+  }
+  .site-head .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .logo { font: 800 20px/1 Fraunces, Georgia, serif; letter-spacing: -0.02em; color: var(--brand-800); text-decoration: none; }
+  .logo span { color: var(--brand-500); }
+  .head-tag { font-size: 12px; color: var(--ink-soft); }
+
+  /* Hero */
+  h1, h2, h3 { font-family: Fraunces, Georgia, serif; letter-spacing: -0.025em; line-height: 1.15; }
+  h1 { font-size: 34px; margin: 28px 0 8px; }
+  h2 { font-size: 26px; margin: 32px 0 12px; }
+  .byline { color: var(--ink-soft); font-size: 14px; margin: 0 0 20px; }
+  .jump {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--brand-500); color: #fff; text-decoration: none;
+    padding: 12px 24px; border-radius: 999px; font-weight: 600;
+    box-shadow: var(--shadow);
+    transition: background .15s, transform .1s;
+  }
+  .jump:hover { background: var(--brand-600); }
+  .jump:active { transform: scale(0.97); }
+  .jump:focus-visible { outline: 3px solid var(--brand-100); outline-offset: 2px; }
+  .jump svg { width: 20px; height: 20px; }
+  .hero-img {
+    margin: 24px 0;
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    background:
+      radial-gradient(circle at 30% 35%, #d9542c 0 18%, transparent 19%),
+      radial-gradient(circle at 62% 55%, #c2461f 0 22%, transparent 23%),
+      radial-gradient(circle at 45% 70%, #e0683d 0 14%, transparent 15%),
+      radial-gradient(circle at 50% 50%, #f3e2c4 0 46%, #e9d3ad 47% 52%, var(--brand-800) 53%);
+    display: grid; place-items: end start;
+    overflow: hidden;
+  }
+  .hero-img figcaption {
+    width: 100%; padding: 32px 16px 12px; color: #fff; font-size: 13px;
+    background: linear-gradient(transparent, rgba(30, 10, 5, 0.75));
+  }
+
+  /* Story */
+  .story p { margin: 0 0 18px; }
+
+  /* Ads */
+  .ad {
+    position: relative;
+    margin: 28px 0;
+    background: var(--ad-bg);
+    border: 1px dashed var(--ad-line);
+    border-radius: 12px;
+    padding: 20px 16px 16px;
+    color: var(--ad-ink);
+  }
+  .ad::before {
+    content: "Advertisement";
+    position: absolute; top: 6px; right: 12px;
+    font-size: 10px; letter-spacing: .08em; text-transform: uppercase; opacity: .6;
+  }
+  .ad h3 { margin: 0 0 6px; font-size: 20px; }
+  .ad p { margin: 0 0 12px; font-size: 14px; }
+  .ad .ad-btn {
+    border: 0; background: var(--ad-ink); color: var(--ad-bg);
+    padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 14px;
+    transition: opacity .15s, transform .1s;
+  }
+  .ad .ad-btn:hover { opacity: .85; }
+  .ad .ad-btn:active { transform: scale(0.96); }
+  .ad .fine { font-size: 11px; opacity: .7; margin-top: 10px; }
+  .ad.loud { background: var(--brand-800); color: #fff; border: 0; text-align: center; }
+  .ad.loud .ad-btn { background: #ffd84a; color: var(--brand-800); }
+  .ad.loud h3 { font-size: 24px; }
+  .ad-thanks { font-size: 13px; font-weight: 600; margin-top: 8px; min-height: 1em; }
+
+  /* Recipe card */
+  .recipe {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 20px 16px;
+    box-shadow: var(--shadow);
+    margin: 32px 0;
+    scroll-margin-top: 16px;
+  }
+  .recipe h2 { margin-top: 0; }
+  .meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0 0 20px; }
+  .meta div { background: var(--brand-50); border-radius: 8px; padding: 8px; text-align: center; }
+  .meta dt { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); }
+  .meta dd { margin: 0; font-weight: 600; font-size: 14px; }
+  .recipe h3 { font-size: 20px; margin: 24px 0 8px; }
+  .ingredients { list-style: none; padding: 0; margin: 0; }
+  .ingredients li { border-bottom: 1px solid var(--line); }
+  .ingredients label { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; cursor: pointer; }
+  .ingredients input { width: 20px; height: 20px; margin: 3px 0 0; accent-color: var(--ok); flex: none; cursor: pointer; }
+  .ingredients input:checked + span { text-decoration: line-through; color: var(--ink-soft); }
+  .note { display: block; font-size: 13px; color: var(--ink-soft); }
+  .steps { padding: 0; margin: 0; list-style: none; counter-reset: step; }
+  .steps li { counter-increment: step; position: relative; padding: 0 0 16px 44px; }
+  .steps li::before {
+    content: counter(step);
+    position: absolute; left: 0; top: 0;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--brand-500); color: #fff;
+    display: grid; place-items: center; font-size: 14px; font-weight: 600;
+  }
+  .tip {
+    background: var(--brand-50); border-left: 4px solid var(--brand-500);
+    border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 8px; font-size: 15px;
+  }
+
+  /* Comments */
+  .comment { border-top: 1px solid var(--line); padding: 16px 0; }
+  .comment .who { font-weight: 600; font-size: 14px; }
+  .comment .stars { color: var(--brand-500); font-size: 14px; letter-spacing: 2px; }
+  .comment p { margin: 4px 0 0; font-size: 15px; }
+
+  .site-foot { color: var(--ink-soft); font-size: 13px; text-align: center; padding: 32px 0; }
+
+  /* Sticky bottom ad */
+  .sticky-ad {
+    position: fixed; left: 8px; right: 8px; bottom: 8px; z-index: 20;
+    background: var(--ad-ink); color: var(--ad-bg);
+    border-radius: 12px; padding: 12px 48px 12px 16px;
+    box-shadow: var(--shadow-up);
+    font-size: 14px;
+    transition: transform .3s ease, opacity .3s;
+  }
+  .sticky-ad strong { display: block; font-size: 15px; }
+  .sticky-ad.swap { transform: translateY(140%); opacity: 0; }
+  .close {
+    position: absolute; top: 8px; right: 8px;
+    width: 32px; height: 32px; border: 0; border-radius: 50%;
+    background: rgba(255, 255, 255, .12); color: inherit;
+    display: grid; place-items: center;
+    transition: background .15s;
+  }
+  .close:hover { background: rgba(255, 255, 255, .25); }
+  .close:focus-visible { outline: 2px solid #fff; }
+  .close svg { width: 16px; height: 16px; }
+
+  /* Newsletter pop up */
+  .modal-back {
+    position: fixed; inset: 0; z-index: 30;
+    background: rgba(30, 12, 6, .55);
+    display: none; align-items: flex-end; justify-content: center;
+    padding: 16px;
+  }
+  .modal-back.open { display: flex; }
+  .modal {
+    position: relative;
+    background: var(--card); border-radius: 16px; padding: 24px 16px 16px;
+    width: 100%; max-width: 420px; box-shadow: var(--shadow-up);
+    text-align: center;
+    animation: rise .3s ease;
+  }
+  @keyframes rise { from { transform: translateY(24px); opacity: 0; } }
+  .modal h2 { margin: 0 0 8px; font-size: 24px; }
+  .modal p { margin: 0 0 16px; color: var(--ink-soft); font-size: 15px; }
+  .modal .close { background: var(--brand-50); color: var(--ink); }
+  .modal .close:hover { background: var(--brand-100); }
+  .modal .yes {
+    width: 100%; border: 0; border-radius: 999px; padding: 12px 24px;
+    background: var(--brand-500); color: #fff; font-weight: 600;
+    transition: background .15s;
+  }
+  .modal .yes:hover { background: var(--brand-600); }
+  .modal .no {
+    margin-top: 8px; border: 0; background: none; color: var(--ink-soft);
+    font-size: 13px; text-decoration: underline; padding: 8px;
+  }
+
+  @media (min-width: 640px) {
+    h1 { font-size: 44px; }
+    .recipe { padding: 28px 32px; }
+    .sticky-ad { left: 50%; right: auto; width: 600px; transform: translateX(-50%); }
+    .sticky-ad.swap { transform: translate(-50%, 140%); }
+    .modal-back { align-items: center; }
+    .modal { padding: 32px 24px 24px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="#">Simmer<span>Forever</span></a>
+    <span class="head-tag">Recipes, eventually</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>James' Bolognese Ragu</h1>
+  <p class="byline">By James. Reading time: 47 minutes. Cooking time: as long as you can bear.</p>
+
+  <a class="jump" href="#recipe">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+    Jump to recipe
+  </a>
+
+  <figure class="hero-img">
+    <figcaption>Artist's impression of the ragu. The real one ate the camera.</figcaption>
+  </figure>
+
+  <article class="story">
+    <p>Before we get to the recipe, I need you to understand where I come from. Not geographically. Spiritually. Emotionally. Saucewise.</p>
+
+    <p>It was a crisp autumn morning. The leaves were the exact colour of a well browned mince. I was seven years old, and I had just been handed my first wooden spoon. I did not know it then, but that spoon would change my life. I still have it. I do not use it. It is in a glass case in the hall, and guests are asked to whisper near it.</p>
+
+    <aside class="ad" aria-label="Advertisement">
+      <h3>Onion Goggles PRO</h3>
+      <p>Only cry at films. Now with anti fog, anti tears and anti emotions technology.</p>
+      <button class="ad-btn" data-thanks="Goggles sold out. Please cry normally.">Buy now</button>
+      <div class="ad-thanks" aria-live="polite"></div>
+    </aside>
+
+    <p>My grandmother never made bolognese. She did not believe in it. She believed in boiled ham and silence. So my journey began in a sauce vacuum, which is the worst kind of vacuum, worse even than the one my uncle bought off a man at a car boot sale.</p>
+
+    <p>Years passed. I went to university, where I lived on a diet of toast and regret. One night, a flatmate made a spaghetti bolognese from a jar. I watched him pour it. I watched him stir it. Something inside me said, very quietly, "No." That voice has never left me. It also comments on how I park.</p>
+
+    <aside class="ad loud" aria-label="Advertisement">
+      <h3>Doctors HATE this one weird ladle</h3>
+      <p>Local man stirs sauce 400% faster using a trick that the Big Spoon industry does not want you to know.</p>
+      <button class="ad-btn" data-thanks="The ladle is weird. We did warn you.">Reveal the ladle</button>
+      <div class="ad-thanks" aria-live="polite"></div>
+    </aside>
+
+    <p>Then came the trip to Bologna. I walked into a small restaurant and asked for spaghetti bolognese. The waiter did not speak. He looked at me for eleven seconds. Then he went into the kitchen, and I heard the whole kitchen laugh. I left a large tip out of shame. I have been trying to earn that man's respect ever since. He does not know this. He has almost certainly forgotten me. I have not forgotten him.</p>
+
+    <p>Now, a word about bacon. The bacon must be smoked. I know you want to use unsmoked bacon. I know it is in your fridge right now, looking at you. Do not do it. We used unsmoked bacon once, at Christmas 2014. We do not talk about Christmas 2014. My brother still sends me a card every year that just says "pale".</p>
+
+    <aside class="ad" aria-label="Advertisement">
+      <h3>Saucepans in your area want to meet you</h3>
+      <p>Lonely? Hungry? 3 heavy bottomed saucepans are within 2 miles of you right now.</p>
+      <button class="ad-btn" data-thanks="A saucepan has viewed your profile.">Start chatting</button>
+      <div class="ad-thanks" aria-live="polite"></div>
+    </aside>
+
+    <p>And then there is Worcestershire sauce. I have used it for twenty years and I still cannot say it. Nobody can. It is spelled like a sneeze and it tastes like a secret. It goes in this ragu, and you will thank me, even if you have to point at the bottle in the shop.</p>
+
+    <p>The secret ingredient, though, is time. The last time I made this, I put it on to simmer on a Saturday morning. I added water, I stirred, I added more water. At some point I missed my own birthday party. My friends came round to find me. I gave them a bowl each, and nobody mentioned the party again. That is what this ragu does. It heals.</p>
+
+    <aside class="ad" aria-label="Advertisement">
+      <h3>Is your colander leaking?</h3>
+      <p>You may be owed compensation. Our experts confirm that holes in colanders are, in fact, on purpose. Claim anyway.</p>
+      <button class="ad-btn" data-thanks="Claim rejected. The holes are meant to be there.">Check my claim</button>
+      <div class="ad-thanks" aria-live="polite"></div>
+    </aside>
+
+    <p>Some people ask me, "James, is it a ragu or a bolognese?" I tell them it is both. I tell them the title says so. Then I walk away slowly, so they understand the conversation is over.</p>
+
+    <p>Anyway. Thank you for reading this far. Or for scrolling quickly past it with your thumb, which is fine, I could hear you doing it. Here is the recipe.</p>
+  </article>
+
+  <section class="recipe" id="recipe" aria-labelledby="recipe-title">
+    <h2 id="recipe-title">James' Bolognese Ragu</h2>
+    <dl class="meta">
+      <div><dt>Prep</dt><dd>15 mins</dd></div>
+      <div><dt>Cook</dt><dd>Hours</dd></div>
+      <div><dt>Serves</dt><dd>4ish</dd></div>
+    </dl>
+
+    <h3>Ingredients</h3>
+    <ul class="ingredients">
+      <li><label><input type="checkbox"><span>3 rashers smoked bacon, chopped <span class="note">Yes, it must be smoked.</span></span></label></li>
+      <li><label><input type="checkbox"><span>1 onion, chopped</span></label></li>
+      <li><label><input type="checkbox"><span>500g pork mince</span></label></li>
+      <li><label><input type="checkbox"><span>2 tablespoons Worcestershire sauce, plus around 100ml of water</span></label></li>
+      <li><label><input type="checkbox"><span>2 tablespoons tomato puree</span></label></li>
+      <li><label><input type="checkbox"><span>2 teaspoons garlic puree, or 2 minced cloves of garlic <span class="note">If you use garlic cloves, add them towards the end of the onion cooking.</span></span></label></li>
+      <li><label><input type="checkbox"><span>1 carton tomato passata</span></label></li>
+      <li><label><input type="checkbox"><span>30g grated parmesan</span></label></li>
+    </ul>
+
+    <h3>Steps</h3>
+    <ol class="steps">
+      <li>Fry the bacon until just browned. Then add the onion and cook until it is translucent.</li>
+      <li>Add the mince, season with salt and break it up. Cook until it browns. You do want a bit of pan stickage.</li>
+      <li>Deglaze the pan with the watered down Worcestershire sauce.</li>
+      <li>Add the purees, stir them in and cook for a couple of minutes.</li>
+      <li>Add the passata. Wash out the carton with water (I fill it around half way) and add that water to the pan.</li>
+      <li>Mix and simmer for as many hours as you possibly can. As it reduces, you will need to add more water from time to time.</li>
+      <li>About 20 minutes before eating, add the grated parmesan and stir it through.</li>
+    </ol>
+
+    <p class="tip"><strong>Important:</strong> the Worcestershire sauce and the parmesan are essential for the umami taste.</p>
+  </section>
+
+  <aside class="ad loud" aria-label="Advertisement">
+    <h3>Learn Italian in 3 days</h3>
+    <p>Day 1: "spaghetti". Day 2: "bolognese". Day 3: rest, you have earned it.</p>
+    <button class="ad-btn" data-thanks="Ciao. That is all of it. Course complete.">Start lesson 1</button>
+    <div class="ad-thanks" aria-live="polite"></div>
+  </aside>
+
+  <section aria-labelledby="reviews-title">
+    <h2 id="reviews-title">Reviews (3)</h2>
+    <div class="comment">
+      <div class="who">Karen_from_Leeds</div>
+      <div class="stars" aria-label="1 star out of 5">&#9733;&#9734;&#9734;&#9734;&#9734;</div>
+      <p>I replaced the pork with chickpeas, the bacon with tofu and the passata with custard. Disgusting. Would not make again.</p>
+    </div>
+    <div class="comment">
+      <div class="who">Dave1972</div>
+      <div class="stars" aria-label="5 stars out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>Have not made it yet, but the bit about the waiter made me cry. Five stars for the story.</p>
+    </div>
+    <div class="comment">
+      <div class="who">NotJamesBrother</div>
+      <div class="stars" aria-label="2 stars out of 5">&#9733;&#9733;&#9734;&#9734;&#9734;</div>
+      <p>Pale.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  SimmerForever. No saucepans were harmed. Some were mildly upset.
+</footer>
+
+<div class="sticky-ad" id="stickyAd" role="complementary" aria-label="Advertisement">
+  <strong id="stickyTitle">You have won a FREE spoon!</strong>
+  <span id="stickyBody">You are our 1,000,000th visitor. Claim your spoon before it goes cold.</span>
+  <button class="close" id="stickyClose" aria-label="Close advert">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+</div>
+
+<div class="modal-back" id="modalBack">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="close" id="modalClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <h2 id="modalTitle">Wait! Before you scroll</h2>
+    <p id="modalBody">Join 3 million people who also just wanted the recipe. Get one sauce fact a day, forever. You cannot unsubscribe.</p>
+    <button class="yes" id="modalYes">Yes, send me sauce facts</button>
+    <button class="no" id="modalNo">No thanks, I hate flavour</button>
+  </div>
+</div>
+
+<script>
+  // In-page adverts: swap the button result text when clicked.
+  document.querySelectorAll('.ad-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btn.parentElement.querySelector('.ad-thanks').textContent = btn.dataset.thanks;
+    });
+  });
+
+  // Sticky advert: closing it only brings in the next one, until they run out.
+  var stickyAds = [
+    ['Are you sure?', 'The spoon will be very sad. It was looking forward to meeting you.'],
+    ['Make £4,000 a day from stirring', 'Local mum discovers the secret. Stirring gurus are furious.'],
+    ['Hot mince in your area', 'Fresh, browned and ready to deglaze. Tap to find out more.'],
+    ['OK, fine', 'You win. This is the last advert. Probably.']
+  ];
+  var stickyIndex = 0;
+  var sticky = document.getElementById('stickyAd');
+  document.getElementById('stickyClose').addEventListener('click', function () {
+    sticky.classList.add('swap');
+    setTimeout(function () {
+      if (stickyIndex >= stickyAds.length) { sticky.remove(); return; }
+      document.getElementById('stickyTitle').textContent = stickyAds[stickyIndex][0];
+      document.getElementById('stickyBody').textContent = stickyAds[stickyIndex][1];
+      stickyIndex++;
+      sticky.classList.remove('swap');
+    }, 350);
+  });
+
+  // Newsletter pop up: shows once, after the reader starts to scroll.
+  var modalBack = document.getElementById('modalBack');
+  var modalShown = false;
+  function openModal() {
+    if (modalShown) return;
+    modalShown = true;
+    modalBack.classList.add('open');
+  }
+  function closeModal() { modalBack.classList.remove('open'); }
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 600) openModal();
+  }, { passive: true });
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  document.getElementById('modalNo').addEventListener('click', closeModal);
+  document.getElementById('modalYes').addEventListener('click', function () {
+    document.getElementById('modalTitle').textContent = 'Welcome to the family';
+    document.getElementById('modalBody').textContent = 'Sauce fact number 1: sauce is wet. See you tomorrow.';
+    this.textContent = 'Close';
+    this.onclick = closeModal;
+  });
+  modalBack.addEventListener('click', function (e) { if (e.target === modalBack) closeModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
